@@ -33,7 +33,7 @@ export default function AppFunctional(props) {
   function getNextIndex(direction) {
     let x = index % 3;
     let y = Math.floor(index / 3);
-
+  
     switch (direction) {
       case "left":
         x = x > 0 ? x - 1 : x;
@@ -50,21 +50,28 @@ export default function AppFunctional(props) {
       default:
         break;
     }
-
-    return y * 3 + x;
+  
+    // Check if the new coordinates are within the grid boundaries
+    if (x >= 0 && x <= 2 && y >= 0 && y <= 2) {
+      return y * 3 + x;
+    }
+  
+    // If the new coordinates are outside the grid boundaries, return the current index
+    return index;
   }
 
   function move(evt) {
     const direction = evt.target.id;
     const newIndex = getNextIndex(direction);
-
+  
     // Check if the movement is valid (newIndex is within the grid boundaries)
-    if (newIndex >= 0 && newIndex <= 8) {
+    if (newIndex !== index) {
       setIndex(newIndex);
       setSteps(steps + 1);
       setMessage(""); // Clear previous message
     } else {
-      setMessage("Cannot move in that direction.");
+      // If newIndex is the same as the current index, do not update steps or index
+      setMessage(`You can't go ${direction}`);
     }
   }
 
