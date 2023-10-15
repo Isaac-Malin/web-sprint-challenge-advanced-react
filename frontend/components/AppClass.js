@@ -28,14 +28,14 @@ class AppClass extends Component {
     return `Coordinates (${cords[0]}, ${cords[1]})`;
   }
 
-  reset() {
+  reset = () => {
     this.setState({
       message: initialMessage,
       email: initialEmail,
       steps: 0,
       index: 4,
     });
-  }
+  };
 
   getNextIndex(direction) {
     let x = this.state.index % 3;
