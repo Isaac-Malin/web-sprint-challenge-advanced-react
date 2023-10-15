@@ -87,7 +87,8 @@ export default function AppFunctional(props) {
         console.log(res.data);
       })
       .catch((error) => {
-        setMessage("Error submitting the form.");
+        console.log(error)
+        setMessage(error.response.data.message);
       });
   }
 
