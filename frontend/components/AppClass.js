@@ -110,7 +110,7 @@ class AppClass extends Component {
       <div id="wrapper" className={this.props.className}>
         <div className="info">
           <h3 id="coordinates">{this.getXYMessage()}</h3>
-          <h3 id="steps">You moved {this.state.steps} times</h3>
+          <h3 id="steps">You moved {this.state.steps} {this.state.steps > 1 || this.state.steps === 0 ? 'times' : 'time'}</h3>
         </div>
         <div id="grid">
           {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((idx) => (
@@ -146,6 +146,7 @@ class AppClass extends Component {
           <input
             onChange={this.onChange}
             id="email"
+            value={this.state.email}
             type="email"
             placeholder="type email"
           />

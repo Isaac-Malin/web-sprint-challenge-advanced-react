@@ -3,12 +3,10 @@ import axios from "axios";
 
 const URL = "http://localhost:9000/api/result";
 
-const initialMessage = "";
-const initialEmail = "";
 
 export default function AppFunctional(props) {
-  const [message, setMessage] = useState(initialMessage);
-  const [email, setEmail] = useState(initialEmail);
+  const [message, setMessage] = useState('');
+  const [email, setEmail] = useState('');
   const [steps, setSteps] = useState(0);
   const [index, setIndex] = useState(4);
 
@@ -24,8 +22,8 @@ export default function AppFunctional(props) {
   }
 
   function reset() {
-    setMessage(initialMessage);
-    setEmail(initialEmail);
+    setMessage('');
+    setEmail('');
     setSteps(0);
     setIndex(4);
   }
@@ -103,7 +101,7 @@ export default function AppFunctional(props) {
     <div id="wrapper" className={props.className}>
       <div className="info">
         <h3 id="coordinates">{getXYMessage()}</h3>
-        <h3 id="steps">You moved {steps} times</h3>
+        <h3 id="steps">You moved {steps} {steps > 1 || steps === 0 ? 'times' : 'time'}</h3>
       </div>
       <div id="grid">
         {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((idx) => (
@@ -129,14 +127,15 @@ export default function AppFunctional(props) {
         <button onClick={move} id="down">
           DOWN
         </button>
-        <button onClick={reset} id="reset">
+        <button onClick={() => reset()} id="reset">
           reset
         </button>
       </div>
       <form onSubmit={onSubmit}>
         <input
-          onChange={(evt) => onChange(evt)}
+          onChange={onChange}
           id="email"
+          value={email}
           type="email"
           placeholder="type email"
         ></input>
