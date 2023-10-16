@@ -53,9 +53,6 @@ export default function AppFunctional(props) {
     if (x >= 0 && x <= 2 && y >= 0 && y <= 2) {
       return y * 3 + x;
     }
-  
-    // If the new coordinates are outside the grid boundaries, return the current index
-    return index;
   }
 
   function move(evt) {
@@ -95,6 +92,7 @@ export default function AppFunctional(props) {
         console.log(error)
         setMessage(error.response.data.message);
       });
+      reset();
   }
 
   return (

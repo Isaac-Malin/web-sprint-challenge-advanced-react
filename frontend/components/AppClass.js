@@ -61,8 +61,6 @@ class AppClass extends Component {
     if (x >= 0 && x <= 2 && y >= 0 && y <= 2) {
       return y * 3 + x;
     }
-
-    return this.state.index;
   }
 
   move = (evt) => {
@@ -103,6 +101,7 @@ class AppClass extends Component {
           message: error.response.data.message,
         });
       });
+      this.reset();
   };
 
   render() {
