@@ -1,4 +1,7 @@
+import React from "react"
+import App from './AppFunctional'
+
 // Write your tests here
-test('sanity', () => {
-  expect(true).toBe(false)
+test('render without error', () => {
+  expect(<App />).toBeInTheDocument()
 })

@@ -87,10 +87,11 @@ class AppClass extends Component {
   };
 
   onSubmit = (evt) => {
+    const [ x, y] = this.getXY()
     evt.preventDefault();
 
     axios
-      .post(URL, { x: this.state.index % 3, y: Math.floor(this.state.index / 3), steps: this.state.steps, email: this.state.email })
+      .post(URL, { x, y, steps: this.state.steps, email: this.state.email })
       .then((response) => {
         this.setState({
           message: response.data.message,
@@ -101,7 +102,7 @@ class AppClass extends Component {
           message: error.response.data.message,
         });
       });
-      this.reset();
+      this.setState({email: ''});
   };
 
   render() {

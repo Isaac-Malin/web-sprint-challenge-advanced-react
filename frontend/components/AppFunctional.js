@@ -75,12 +75,14 @@ export default function AppFunctional(props) {
   }
 
   function onSubmit(evt) {
+    const [ x, y] = getXY()
+
     evt.preventDefault();
     // Make a POST request to the server endpoint with email and current coordinates
     axios
       .post(URL, {
-        x: index % 3,
-        y: Math.ceil((index + 1) / 3),
+        x,
+        y,
         steps: steps,
         email: email,
       })
@@ -91,8 +93,9 @@ export default function AppFunctional(props) {
       .catch((error) => {
         console.log(error)
         setMessage(error.response.data.message);
+        console.log(getXYMessage())
       });
-      reset();
+      setEmail('')
   }
 
   return (
